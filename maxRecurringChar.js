@@ -1,8 +1,6 @@
 function maxRecurringChar (str) {
   const arr = [...str]
   const obj = {}
-  let maxChar
-  let maxCharNumber = 0
 
   for (let i = 0; arr.length > i; i++) {
     const char = arr[i]
@@ -11,14 +9,12 @@ function maxRecurringChar (str) {
       : obj[char] = 1
   }
 
-  for (const prop in obj) {
-    if (maxCharNumber < obj[prop]) {
-      maxChar = prop
-      maxCharNumber = obj[prop]
-    }
-  }
+  const arrKeys = Object.keys(obj)
+  const arrValues = Object.values(obj)
+  const maxValue = Math.max(...arrValues)
+  const maxElemIndex = arrValues.indexOf(maxValue)
 
-  return maxChar
+  return arrKeys[maxElemIndex]
 }
 
 module.exports = maxRecurringChar
